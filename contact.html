@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hubungi Professional Motivator Indonesia untuk reservasi training leadership, sales, dan gathering perusahaan. Fast response via WhatsApp.">
+    <meta name="keywords" content="kontak motivator, jasa training, reservasi seminar, leadership training jakarta">
+    <title>Hubungi Kami - Professional Motivator</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <style>
+        /* --- 1. GLOBAL VARIABLES --- */
+        :root {
+            --bg-dark: #0b0f19;       
+            --bg-card: #131929;       
+            --bg-footer: #05070a;     
+            --gold: #d4af37;          
+            --gold-hover: #f0c441;
+            --text-heading: #ffffff;  
+            --text-body: #e2e8f0; 
+            --border-line: rgba(255,255,255,0.1);
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-body);
+            overflow-x: hidden;
+            line-height: 1.7;
+            width: 100%;
+        }
+
+        h1, h2, h3, h4, h5, .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-heading);
+        }
+
+        p, li, span, div { color: var(--text-body); }
+        .text-gold { color: var(--gold) !important; }
+        .text-white { color: #fff !important; }
+        a { text-decoration: none; }
+
+        /* --- 2. NAVBAR --- */
+        .navbar {
+            padding: 1rem 0;
+            background: rgba(11, 15, 25, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-line);
+        }
+        .navbar-brand img { height: 40px; width: auto; }
+        .nav-link {
+            color: #d1d1d1 !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin: 0 0.8rem;
+            transition: color 0.3s;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--gold) !important; }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), #cba226);
+            color: #000 !important;
+            font-weight: 700;
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            background: var(--gold-hover);
+        }
+
+        /* --- 3. PAGE HEADER --- */
+        .page-header {
+            position: relative;
+            padding: 140px 0 60px; 
+            background: linear-gradient(90deg, #0b0f19 30%, rgba(11, 15, 25, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+
+        /* --- 4. CONTACT FORM STYLE --- */
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-line);
+            padding: 2.5rem;
+            border-radius: 12px;
+            height: 100%;
+            overflow: hidden; 
+        }
+        
+        .icon-box {
+            width: 50px; height: 50px;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-line);
+            color: #fff;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        /* Custom Select (Dropdown) */
+        .form-select {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-line);
+            color: #fff;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 100%;
+            /* Custom Arrow Emas */
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23d4af37' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+            background-size: 16px 12px;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--gold);
+            color: #fff;
+            box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
+        }
+
+        ::placeholder { color: #888 !important; opacity: 1; }
+        option { background-color: #1a202e; color: #fff; padding: 10px; }
+
+        .map-frame {
+            width: 100%; height: 250px; border-radius: 12px; overflow: hidden;
+            border: 1px solid var(--border-line); margin-top: 2rem;
+        }
+        .map-frame iframe { width: 100%; height: 100%; border: 0; filter: grayscale(100%) invert(92%) contrast(83%); }
+
+        /* --- 5. FOOTER --- */
+        footer { background: var(--bg-footer); border-top: 1px solid var(--border-line); padding-top: 4rem; }
+        .footer-logo { height: 40px; margin-bottom: 1.5rem; }
+        .footer-heading { color: var(--text-heading); font-weight: 700; margin-bottom: 1.5rem; }
+        .footer-links a { color: #a0a0a0; transition: 0.3s; display:block; margin-bottom: 0.5rem; }
+        .footer-links a:hover { color: var(--gold); padding-left: 5px; }
+        .social-btn {
+            width: 40px; height: 40px; background: rgba(255,255,255,0.08);
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 50%; margin-right: 8px; transition: 0.3s; color: #fff;
+        }
+        .social-btn:hover { background: var(--gold); color: #000 !important; }
+
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 991px) {
+            .page-header { padding: 110px 0 40px; }
+            .section-tight { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+            
+            .form-control, .form-select {
+                min-height: 50px;
+                font-size: 16px;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box;
+            }
+            
+            .form-select {
+                background-position: right 1rem center;
+                padding-right: 2.5rem;
+                white-space: nowrap;
+                overflow: hidden; 
+                text-overflow: ellipsis; 
+            }
+            
+            .info-card { padding: 1.5rem; width: 100%; overflow-x: hidden; }
+            .row { margin-left: 0; margin-right: 0; }
+            .col-lg-7, .col-lg-5, .col-12, .col-md-6 { padding-left: 0; padding-right: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvMns9Qk8dTqnpWpx0of4ukOeFKVI1m-SfD_pUbvdmdd_xBLHCTuvS_yyJHODVKoZaZgx_JWDRFOW3OY6NhI_EITfALURWn6hzSbKrG9HT3Pe2PmfHoodm5alIBolqhTneD5ixcOomGc9wkxtCmp-jHeqzDYM0NJx_c9-A4bWGWjr-VskykAtIJWNJoLs/s411/logo%20umrohquu.png" alt="Logo Brand">
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-uppercase small ls-1">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">Artikel</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Kontak</a></li>
+                </ul>
+                <a href="https://wa.me/62895639068080" target="_blank" class="btn btn-gold ms-lg-3 shadow">Undang Kami</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <p class="text-gold text-uppercase fw-bold ls-2 mb-2">Get In Touch</p>
+            <h1 class="display-4 fw-bold text-white mb-0">Hubungi & Reservasi</h1>
+        </div>
+    </header>
+
+    <section class="section-tight py-5">
+        <div class="container">
+            <div class="row g-5">
+                
+                <div class="col-lg-5">
+                    <div class="info-card">
+                        <h3 class="text-white fw-bold mb-4">Informasi Kantor</h3>
+                        <p class="mb-4">Silakan hubungi kami untuk diskusi awal mengenai kebutuhan training perusahaan Anda. Kami siap memberikan solusi terbaik.</p>
+                        
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="icon-box"><i class="bi bi-geo-alt"></i></div>
+                            <div>
+                                <h6 class="text-white fw-bold m-0">Lokasi</h6>
+                                <span class="small">Menara Sudirman Lt. 15, Jakarta Selatan</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="icon-box"><i class="bi bi-envelope"></i></div>
+                            <div>
+                                <h6 class="text-white fw-bold m-0">Email</h6>
+                                <span class="small">info@motivator.com</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="icon-box"><i class="bi bi-whatsapp"></i></div>
+                            <div>
+                                <h6 class="text-white fw-bold m-0">WhatsApp (Official)</h6>
+                                <span class="small">+62 895 6390 68080</span>
+                            </div>
+                        </div>
+
+                        <div class="map-frame">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2999784381283!2d106.80034637583648!3d-6.224122960962329!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f14d86b97669%3A0xc304a44177579603!2sSudirman%20Central%20Business%20District!5e0!3m2!1sen!2sid!4v1709190000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="info-card bg-dark border border-secondary border-opacity-25">
+                        <h3 class="text-white fw-bold mb-2">Formulir Reservasi</h3>
+                        <p class="mb-4 small">Isi formulir di bawah ini. Data akan otomatis terhubung ke WhatsApp Admin kami.</p>
+                        
+                        <form onsubmit="kirimKeWhatsApp(event)">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="text-white small mb-1">Nama Lengkap</label>
+                                    <input type="text" id="nama" class="form-control" placeholder="Nama Anda" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="text-white small mb-1">Nama Perusahaan / Instansi</label>
+                                    <input type="text" id="perusahaan" class="form-control" placeholder="PT. Contoh Sukses" required>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label class="text-white small mb-1">Nomor WhatsApp</label>
+                                    <input type="number" id="nomor" class="form-control" placeholder="0812..." required>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label class="text-white small mb-1">Tanggal Rencana Acara</label>
+                                    <input type="date" id="tanggal" class="form-control" required>
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="text-white small mb-1">Pilih Layanan Training</label>
+                                    <select id="layanan" class="form-select" required>
+                                        <option value="" selected disabled>-- Silakan Pilih Kategori --</option>
+                                        <option value="Strategic Leadership">Strategic Leadership</option>
+                                        <option value="High Performance Team">High Performance Team</option>
+                                        <option value="Sales & Negotiation">Sales & Negotiation</option>
+                                        <option value="Public Speaking Mastery">Public Speaking Mastery</option>
+                                        <option value="Corporate Culture">Corporate Culture</option>
+                                        <option value="Motivational Keynote">Motivational Keynote (Seminar)</option>
+                                        <option value="Lainnya / Custom">Lainnya / Custom Request</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="text-white small mb-1">Detail Kebutuhan / Pesan Tambahan</label>
+                                    <textarea id="pesan" class="form-control" rows="4" placeholder="Jelaskan singkat mengenai tujuan training, jumlah peserta, atau request khusus..."></textarea>
+                                </div>
+
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-gold w-100 py-3 fw-bold shadow-lg">
+                                        <i class="bi bi-whatsapp me-2"></i> Kirim Reservasi via WhatsApp
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container pb-5">
+            <div class="row gy-5">
+                <div class="col-lg-4 col-md-6">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvMns9Qk8dTqnpWpx0of4ukOeFKVI1m-SfD_pUbvdmdd_xBLHCTuvS_yyJHODVKoZaZgx_JWDRFOW3OY6NhI_EITfALURWn6hzSbKrG9HT3Pe2PmfHoodm5alIBolqhTneD5ixcOomGc9wkxtCmp-jHeqzDYM0NJx_c9-A4bWGWjr-VskykAtIJWNJoLs/s411/logo%20umrohquu.png" alt="Logo Footer" class="footer-logo">
+                    <p class="pe-lg-4 text-secondary">
+                        Partner terpercaya dalam pengembangan sumber daya manusia. Membantu individu dan organisasi mencapai potensi maksimal mereka.
+                    </p>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Menu Utama</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="about.html">Tentang Kami</a></li>
+                        <li><a href="services.html">Layanan</a></li>
+                        <li><a href="gallery.html">Galeri</a></li>
+                        <li><a href="news.html">Artikel</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Jaringan Web</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="#">Official Academy</a></li>
+                        <li><a href="#">Merchandise Store</a></li>
+                        <li><a href="#">Podcast Series</a></li>
+                        <li><a href="#">Partner Program</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="footer-heading">Terhubung Dengan Kami</h5>
+                    <p class="text-secondary mb-4">Ikuti update terbaru dan konten inspiratif harian di media sosial kami.</p>
+                    <div>
+                        <a href="#" class="social-btn"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="social-btn"><i class="bi bi-linkedin fs-5"></i></a>
+                        <a href="#" class="social-btn"><i class="bi bi-youtube fs-5"></i></a>
+                        <a href="#" class="social-btn"><i class="bi bi-tiktok fs-5"></i></a>
+                    </div>
+                    <div class="mt-4 pt-3 border-top border-secondary border-opacity-25">
+                         <p class="small text-secondary m-0">Email: motivatornomer1@gmail.com</p>
+                         <p class="small text-secondary m-0">Telp: +62 895-6390-68080</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid py-3" style="background-color: #000;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start small text-secondary">
+                        © 2025 #1 Motivator Indonesia. All Rights Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end small">
+                        <a href="#" class="text-secondary me-3">Privacy Policy</a>
+                        <a href="contact.html" class="text-secondary">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('tanggal');
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        });
+
+        function kirimKeWhatsApp(e) {
+            e.preventDefault();
+
+            const nama = document.getElementById('nama').value;
+            const perusahaan = document.getElementById('perusahaan').value;
+            const nomor = document.getElementById('nomor').value;
+            const tanggal = document.getElementById('tanggal').value;
+            const layanan = document.getElementById('layanan').value;
+            const pesan = document.getElementById('pesan').value;
+
+            // NOMOR TUJUAN
+            const nomorAdmin = "62895639068080"; 
+
+            const text = `
+*Halo Admin, saya ingin reservasi Training.*
+
+Berikut detailnya:
+--------------------------------
+👤 *Nama:* ${nama}
+🏢 *Perusahaan:* ${perusahaan}
+📱 *No. HP:* ${nomor}
+📅 *Rencana Tanggal:* ${tanggal}
+🎯 *Layanan Dipilih:* ${layanan}
+--------------------------------
+📝 *Pesan Tambahan:* ${pesan}
+
+Mohon info ketersediaan jadwal dan penawarannya. Terima kasih.
+            `;
+
+            const encodedText = encodeURIComponent(text);
+            
+            // 1. Buka WhatsApp
+            window.open(`https://wa.me/${nomorAdmin}?text=${encodedText}`, '_blank');
+
+            // 2. Redirect ke Halaman Terima Kasih
+            setTimeout(function() {
+                window.location.href = 'thank-you.html';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

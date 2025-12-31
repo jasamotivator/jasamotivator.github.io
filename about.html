@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - Profesional Motivator Profile</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <style>
+        /* --- 1. GLOBAL VARIABLES --- */
+        :root {
+            --bg-dark: #0b0f19;       
+            --bg-card: #131929;       
+            --bg-footer: #05070a;     
+            --gold: #d4af37;          
+            --gold-hover: #f0c441;
+            --text-heading: #ffffff;  
+            --text-body: #e2e8f0; /* Putih Terang */
+            --border-line: rgba(255,255,255,0.1);
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-body);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4, h5, .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-heading);
+        }
+
+        /* Paksa teks jadi putih terang */
+        p, li, span, div { color: var(--text-body); }
+        .text-gold { color: var(--gold) !important; }
+        .text-white { color: #fff !important; }
+
+        a { text-decoration: none; }
+
+        /* --- 2. NAVBAR --- */
+        .navbar {
+            padding: 1rem 0;
+            background: rgba(11, 15, 25, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-line);
+        }
+        .navbar-brand img { height: 40px; width: auto; }
+        .nav-link {
+            color: #d1d1d1 !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin: 0 0.8rem;
+            transition: color 0.3s;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--gold) !important; }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), #cba226);
+            color: #000 !important;
+            font-weight: 700;
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            background: var(--gold-hover);
+        }
+
+        /* --- 3. HEADER --- */
+        .page-header {
+            position: relative;
+            padding: 140px 0 60px; 
+            background: linear-gradient(90deg, #0b0f19 30%, rgba(11, 15, 25, 0.85) 100%),
+                        url('https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* --- 4. BIO SECTION --- */
+        .bio-img-frame {
+            position: relative;
+            padding: 10px;
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+        }
+        .bio-img { width: 100%; border-radius: 4px; filter: grayscale(20%); transition: 0.3s; }
+        .bio-img:hover { filter: grayscale(0%); }
+
+        .stat-box {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-top: 3px solid var(--gold);
+            text-align: center;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gold) !important;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+        
+        /* --- [BARU] CERTIFICATE SECTION --- */
+        .cert-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-line);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            height: 100%;
+            text-align: center;
+        }
+        .cert-card:hover {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-5px);
+        }
+        .cert-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover; /* Agar gambar rapi mengisi kotak */
+            border-radius: 4px;
+            margin-bottom: 1.2rem;
+            opacity: 0.9;
+        }
+        .cert-card:hover .cert-img { opacity: 1; }
+
+        /* --- 5. WHY CHOOSE US --- */
+        .feature-box {
+            padding: 2.5rem;
+            border: 1px solid var(--border-line);
+            border-radius: 8px;
+            transition: 0.3s;
+            background: transparent;
+            height: 100%;
+        }
+        .feature-box:hover {
+            background: rgba(255,255,255,0.03);
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        /* --- 6. MODERN GALLERY --- */
+        .collage-item { position: relative; overflow: hidden; border-radius: 8px; margin-bottom: 20px; }
+        .collage-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; opacity: 0.85; }
+        .collage-item:hover .collage-img { transform: scale(1.05); opacity: 1; }
+        .h-tall { height: 500px; }
+        .h-medium { height: 240px; }
+        
+        /* --- 7. SPACING UTILITIES --- */
+        .section-tight { padding-top: 5rem; padding-bottom: 5rem; }
+        
+        /* --- 8. CONTACT & FOOTER --- */
+        .contact-box {
+            background: linear-gradient(135deg, #1a202e, #0f131f);
+            border: 1px solid var(--border-line);
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .qr-frame { background: #fff; padding: 12px; border-radius: 12px; display: inline-block; }
+
+        footer { background: var(--bg-footer); border-top: 1px solid var(--border-line); padding-top: 4rem; }
+        .footer-logo { height: 40px; margin-bottom: 1.5rem; }
+        .footer-heading { color: var(--text-heading); font-weight: 700; margin-bottom: 1.5rem; }
+        .footer-links a { color: #a0a0a0; transition: 0.3s; display:block; margin-bottom: 0.5rem; }
+        .footer-links a:hover { color: var(--gold); padding-left: 5px; }
+        .social-btn {
+            width: 40px; height: 40px; background: rgba(255,255,255,0.08);
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 50%; margin-right: 8px; transition: 0.3s; color: #fff;
+        }
+        .social-btn:hover { background: var(--gold); color: #000 !important; }
+
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 991px) {
+            .page-header { padding: 110px 0 40px; }
+            .display-4 { font-size: 2.5rem; }
+            .section-tight { padding-top: 3rem !important; padding-bottom: 2rem !important; }
+            .bio-img-frame { margin-bottom: 2rem; max-width: 100%; }
+            .h-tall, .h-medium { height: 300px; } 
+            .contact-box { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvMns9Qk8dTqnpWpx0of4ukOeFKVI1m-SfD_pUbvdmdd_xBLHCTuvS_yyJHODVKoZaZgx_JWDRFOW3OY6NhI_EITfALURWn6hzSbKrG9HT3Pe2PmfHoodm5alIBolqhTneD5ixcOomGc9wkxtCmp-jHeqzDYM0NJx_c9-A4bWGWjr-VskykAtIJWNJoLs/s411/logo%20umrohquu.png" alt="Logo Brand">
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-uppercase small ls-1">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="service.html">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="galeri.html">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">News</a></li>
+                </ul>
+                <a href="https://wa.me/62895639068080" target="_blank" class="btn btn-gold ms-lg-3 shadow">Undang Kami</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <p class="text-gold text-uppercase fw-bold ls-2 mb-2">Professional Profile</p>
+                    <h1 class="display-4 fw-bold text-white mb-3">Mengenal Sang Motivator</h1>
+                    <p class="fs-5 text-white">Perjalanan dedikasi dalam mengubah mindset dan membangun pemimpin masa depan.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="section-tight bg-dark">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <div class="bio-img-frame">
+                        <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=800&auto=format&fit=crop" alt="Profile Motivator" class="bio-img">
+                    </div>
+                </div>
+                <div class="col-lg-7 ps-lg-5">
+                    <h2 class="text-white fw-bold mb-4">Transformasi Melalui Edukasi</h2>
+                    <p class="mb-3">
+                        Halo, saya <strong>[Nama Motivator]</strong>. Selama lebih dari 10 tahun, saya telah mendedikasikan karir saya untuk satu tujuan: <em>membantu individu dan organisasi mencapai potensi terbaik mereka.</em>
+                    </p>
+                    <p class="mb-4">
+                        Berawal dari pengalaman profesional sebagai praktisi bisnis, saya memahami tekanan dunia korporasi. Metode saya menggabungkan <strong>Psikologi Terapan</strong> dan <strong>Strategi Bisnis</strong> untuk menciptakan dampak nyata.
+                    </p>
+                    <div class="row g-2 g-md-3 mb-4">
+                        <div class="col-4">
+                            <div class="stat-box">
+                                <div class="stat-number">12+</div>
+                                <div class="small text-white text-uppercase" style="font-size: 0.75rem;">Tahun<br>Pengalaman</div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-box">
+                                <div class="stat-number">500+</div>
+                                <div class="small text-white text-uppercase" style="font-size: 0.75rem;">Klien<br>Korporat</div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-box">
+                                <div class="stat-number">50k+</div>
+                                <div class="small text-white text-uppercase" style="font-size: 0.75rem;">Orang<br>Terinspirasi</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-tight" style="border-top: 1px solid var(--border-line); border-bottom: 1px solid var(--border-line);">
+        <div class="container">
+            <div class="row mb-5 text-center">
+                <div class="col-12">
+                    <h6 class="text-gold text-uppercase ls-2">Kredibilitas</h6>
+                    <h2 class="text-white fw-bold">Lisensi & Sertifikasi</h2>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="cert-card">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi04Wg_IVJ1rRJ4-y-CfMDIg3tskEZNw7k6Z8l2ql6suMK45feeMumLaKFmJvGvvgvnXpU1puN1Gj-Cp_BIO4mPvwTgBtJBSiVZrd6F4DWCftBUYqhDSCDHrqX1s8W4dQJD8ZRbSER-d9D6ZoQQs-tfiT3PzqHICbjyBMqU6J_XOKexQJ0EAd87jrb35xA/s600/certificate1%20(1).webp" alt="Sertifikat 1" class="cert-img">
+                        <h5 class="text-white fw-bold mb-2">Certified Coach (ICF)</h5>
+                        <p class="small mb-0 text-muted">International Coaching Federation</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cert-card">
+                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi04Wg_IVJ1rRJ4-y-CfMDIg3tskEZNw7k6Z8l2ql6suMK45feeMumLaKFmJvGvvgvnXpU1puN1Gj-Cp_BIO4mPvwTgBtJBSiVZrd6F4DWCftBUYqhDSCDHrqX1s8W4dQJD8ZRbSER-d9D6ZoQQs-tfiT3PzqHICbjyBMqU6J_XOKexQJ0EAd87jrb35xA/s600/certificate1%20(1).webp" alt="Sertifikat 2" class="cert-img">
+                        <h5 class="text-white fw-bold mb-2">NLP Master Practitioner</h5>
+                        <p class="small mb-0 text-muted">Society of NLP International</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cert-card">
+                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi04Wg_IVJ1rRJ4-y-CfMDIg3tskEZNw7k6Z8l2ql6suMK45feeMumLaKFmJvGvvgvnXpU1puN1Gj-Cp_BIO4mPvwTgBtJBSiVZrd6F4DWCftBUYqhDSCDHrqX1s8W4dQJD8ZRbSER-d9D6ZoQQs-tfiT3PzqHICbjyBMqU6J_XOKexQJ0EAd87jrb35xA/s600/certificate1%20(1).webp" alt="Sertifikat 3" class="cert-img">
+                        <h5 class="text-white fw-bold mb-2">Leadership Trainer</h5>
+                        <p class="small mb-0 text-muted">Dale Carnegie Training</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-tight" style="background-color: #080a10;">
+        <div class="container">
+            <div class="row mb-5 text-center">
+                <div class="col-12">
+                    <h6 class="text-gold text-uppercase ls-2">Pendekatan Kami</h6>
+                    <h2 class="text-white fw-bold">Mengapa Memilih Kami?</h2>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="feature-box">
+                        <i class="bi bi-bullseye text-gold fs-1 mb-3"></i>
+                        <h4 class="text-white mb-3">Result Oriented</h4>
+                        <p class="small mb-0">Kami fokus pada ROI (Return on Investment). Setiap sesi dirancang untuk memberikan dampak nyata pada produktivitas perusahaan.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="feature-box">
+                        <i class="bi bi-sliders text-gold fs-1 mb-3"></i>
+                        <h4 class="text-white mb-3">Customized Modules</h4>
+                        <p class="small mb-0">Tidak ada solusi "satu obat untuk semua". Kami merancang materi spesifik sesuai tantangan unik tim Anda.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="feature-box">
+                        <i class="bi bi-lightning-charge text-gold fs-1 mb-3"></i>
+                        <h4 class="text-white mb-3">High Energy</h4>
+                        <p class="small mb-0">Sesi interaktif dan penuh energi. Menggunakan metode pembelajaran aktif yang membuat audiens fokus dari awal hingga akhir.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-tight">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h6 class="text-gold text-uppercase ls-2">Life Behind The Stage</h6>
+                    <h2 class="text-white fw-bold">Momen Berharga</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="collage-item h-tall">
+                        <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&w=800&q=80" alt="Main Speech" class="collage-img">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="collage-item h-medium">
+                                <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=600&q=80" alt="Workshop" class="collage-img">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="collage-item h-medium">
+                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="Training" class="collage-img">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="collage-item h-medium">
+                                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80" alt="Team Building" class="collage-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-tight">
+        <div class="container">
+            <div class="contact-box">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 mb-4 mb-lg-0">
+                        <h2 class="text-white fw-bold mb-3">Siap Mengundang Kami?</h2>
+                        <p class="fs-5 mb-4 text-white">Hubungi kami sekarang untuk mendiskusikan kebutuhan training perusahaan Anda.</p>
+                        <ul class="list-unstyled text-white">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-gold me-2"></i> Konsultasi Kebutuhan Gratis</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-gold me-2"></i> Proposal Transparan</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5 text-center">
+                        <div class="qr-frame shadow-lg mb-3">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://wa.me/62895639068080" alt="QR WhatsApp" class="img-fluid">
+                        </div>
+                        <p class="text-white small mb-3">Scan untuk Chat WhatsApp</p>
+                        <a href="https://wa.me/6281234567890" class="btn btn-gold w-75 d-lg-none d-inline-block"><i class="bi bi-whatsapp me-2"></i> Chat WA Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container pb-5">
+            <div class="row gy-5">
+                <div class="col-lg-4 col-md-6">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvMns9Qk8dTqnpWpx0of4ukOeFKVI1m-SfD_pUbvdmdd_xBLHCTuvS_yyJHODVKoZaZgx_JWDRFOW3OY6NhI_EITfALURWn6hzSbKrG9HT3Pe2PmfHoodm5alIBolqhTneD5ixcOomGc9wkxtCmp-jHeqzDYM0NJx_c9-A4bWGWjr-VskykAtIJWNJoLs/s411/logo%20umrohquu.png" alt="Logo Footer" class="footer-logo">
+                    <p class="pe-lg-4 text-secondary">
+                        Partner terpercaya dalam pengembangan sumber daya manusia. Membantu individu dan organisasi mencapai potensi maksimal mereka.
+                    </p>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Menu Utama</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="about.html">Tentang Kami</a></li>
+                        <li><a href="service.html">Service</a></li>
+                        <li><a href="galeri.html">Galeri Kegiatan</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                        <li><a href="blog.html">News</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Jaringan Web</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="#">Official Academy</a></li>
+                        <li><a href="#">Merchandise Store</a></li>
+                        <li><a href="#">Podcast Series</a></li>
+                        <li><a href="#">Partner Program</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="footer-heading">Terhubung Dengan Kami</h5>
+                    <p class="text-secondary mb-4">Ikuti update terbaru dan konten inspiratif harian di media sosial kami.</p>
+                    <div>
+                        <a href="#" class="social-btn"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="social-btn"><i class="bi bi-linkedin fs-5"></i></a>
+                        <a href="#" class="social-btn"><i class="bi bi-youtube fs-5"></i></a>
+                        <a href="#" class="social-btn"><i class="bi bi-tiktok fs-5"></i></a>
+                    </div>
+                    <div class="mt-4 pt-3 border-top border-secondary border-opacity-25">
+                         <p class="small text-secondary m-0">Email: motivatornomer1@gmail.com</p>
+                         <p class="small text-secondary m-0">Telp: +62 895-6390-68080</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid py-3" style="background-color: #000;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start small text-secondary">
+                        &copy; 2025 #1 Motivator Indonesia. All Rights Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end small">
+                        <a href="#" class="text-secondary me-3">Privacy Policy</a>
+                        <a href="contact.html" class="text-secondary">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

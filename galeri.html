@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Kegiatan - Professional Motivator</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <style>
+        /* --- 1. GLOBAL VARIABLES --- */
+        :root {
+            --bg-dark: #0b0f19;       
+            --bg-card: #131929;       
+            --bg-footer: #05070a;     
+            --gold: #d4af37;          
+            --gold-hover: #f0c441;
+            --text-heading: #ffffff;  
+            --text-body: #e2e8f0; 
+            --border-line: rgba(255,255,255,0.1);
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-body);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4, h5, .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-heading);
+        }
+
+        p, li, span, div { color: var(--text-body); }
+        .text-gold { color: var(--gold) !important; }
+        .text-white { color: #fff !important; }
+        a { text-decoration: none; }
+
+        /* --- 2. NAVBAR --- */
+        .navbar {
+            padding: 1rem 0;
+            background: rgba(11, 15, 25, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-line);
+        }
+        .navbar-brand img { height: 40px; width: auto; }
+        .nav-link {
+            color: #d1d1d1 !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin: 0 0.8rem;
+            transition: color 0.3s;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--gold) !important; }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), #cba226);
+            color: #000 !important;
+            font-weight: 700;
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            background: var(--gold-hover);
+        }
+
+        /* --- 3. PAGE HEADER --- */
+        .page-header {
+            position: relative;
+            padding: 140px 0 60px; 
+            background: linear-gradient(90deg, #0b0f19 30%, rgba(11, 15, 25, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+
+        /* --- 4. FEATURED BANNER --- */
+        .featured-banner-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px; 
+            border: 1px solid var(--border-line);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* --- 5. TABS FILTER (CAPSULE STYLE) --- */
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            margin-top: 3rem; 
+        }
+
+        .tabs-wrapper {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-line);
+            border-radius: 50px;
+            padding: 6px;
+            display: inline-flex;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .filter-btn {
+            border: none;
+            border-radius: 40px;
+            padding: 12px 35px;
+            color: #a0a0a0;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.4s ease;
+            background: transparent;
+            margin: 0 2px;
+            cursor: pointer;
+        }
+        
+        .filter-btn:hover { color: #fff; }
+        
+        .filter-btn.active {
+            background-color: var(--gold);
+            color: #000000 !important;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            font-weight: 700;
+        }
+
+        /* --- 6. GALLERY GRID --- */
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid var(--border-line);
+            transition: all 0.3s ease;
+            background: var(--bg-card);
+        }
+
+        .gallery-thumb {
+            width: 100%;
+            aspect-ratio: 4/3; 
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            opacity: 0.9;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .gallery-item:hover .gallery-thumb {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        /* Caption & Overlay */
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
+            z-index: 2;
+        }
+        .caption-text { color: #fff; font-size: 0.9rem; font-weight: 600; margin: 0; font-family: 'Montserrat', sans-serif; }
+        .caption-sub { color: var(--gold); font-size: 0.75rem; margin: 0; text-transform: uppercase; }
+
+        .zoom-icon {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 2rem; color: #fff;
+            transition: 0.3s; z-index: 3;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .gallery-item:hover .zoom-icon { transform: translate(-50%, -50%) scale(1); }
+
+        /* --- 7. MODAL --- */
+        .modal-content { background-color: transparent; border: none; }
+        .modal-body { padding: 0; background: transparent; position: relative; }
+        .modal-img { width: 100%; border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,0.8); }
+        .modal-caption { background: #000; color: #fff; padding: 15px; text-align: center; border-radius: 0 0 8px 8px; margin-top: -5px; }
+        .btn-close-custom {
+            position: absolute; top: -40px; right: 0;
+            color: #fff; background: none; border: none;
+            font-size: 2rem; opacity: 0.8;
+        }
+
+        /* --- 8. SPACING & FOOTER --- */
+        .section-tight { padding-top: 5rem; padding-bottom: 5rem; }
+        
+        .contact-box {
+            background: linear-gradient(135deg, #1a202e, #0f131f);
+            border: 1px solid var(--border-line);
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .qr-frame { background: #fff; padding: 12px; border-radius: 12px; display: inline-block; }
+
+        footer { background: var(--bg-footer); border-top: 1px solid var(--border-line); padding-top: 4rem; }
+        .footer-logo { height: 40px; margin-bottom: 1.5rem; }
+        .footer-heading { color: var(--text-heading); font-weight: 700; margin-bottom: 1.5rem; }
+        .footer-links a { color: #a0a0a0; transition: 0.3s; display:block; margin-bottom: 0.5rem; }
+        .footer-links a:hover { color: var(--gold); padding-left: 5px; }
+        .social-btn {
+            width: 40px; height: 40px; background: rgba(255,255,255,0.08);
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 50%; margin-right: 8px; transition: 0.3s; color: #fff;
+        }
+        .social-btn:hover { background: var(--gold); color: #000 !important; }
+
+        /* --- MOBILE OPTIMIZATION (TIGHTER SPACING) --- */
+        @media (max-width: 991px) {
+            /* 1. Header Lebih Rapat */
+            .page-header { 
+                padding: 100px 0 30px; /* Dikurangi dari 40px */
+            }
+            
+            /* 2. Jarak Section (Sangat Penting) */
+            /* Meng-override class section-tight dan py-5 bawaan bootstrap di mobile */
+            .section-tight, .py-5 { 
+                padding-top: 2rem !important; 
+                padding-bottom: 2rem !important; 
+            }
+            
+            /* Khusus Gallery Container, jarak atas dinolkan karena sudah ada margin tabs */
+            .section-tight.pt-0 {
+                padding-top: 0 !important;
+            }
+
+            /* 3. Banner Image Height */
+            .featured-banner-img { height: 200px; }
+            
+            /* 4. Contact Box */
+            .contact-box { padding: 2rem 1.5rem; }
+            
+            /* 5. Tabs Scrollable */
+            .tabs-container {
+                display: block; 
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 5px; 
+                margin-top: 1.5rem; /* Margin dikurangi dari 3rem */
+                margin-bottom: 1.5rem; /* Margin dikurangi dari 3rem */
+            }
+            .tabs-wrapper {
+                display: flex;
+                flex-wrap: nowrap; 
+                width: max-content; 
+                margin: 0 auto; 
+            }
+            .filter-btn { padding: 8px 20px; font-size: 0.85rem; white-space: nowrap; }
+            
+            /* 6. Grid Spacing */
+            /* Mengurangi jarak antar foto di mobile agar lebih rapat */
+            .row.g-3 { --bs-gutter-y: 0.5rem; --bs-gutter-x: 0.5rem; }
+            .col-6 { padding: 0 0.25rem; } 
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvMns9Qk8dTqnpWpx0of4ukOeFKVI1m-SfD_pUbvdmdd_xBLHCTuvS_yyJHODVKoZaZgx_JWDRFOW3OY6NhI_EITfALURWn6hzSbKrG9HT3Pe2PmfHoodm5alIBolqhTneD5ixcOomGc9wkxtCmp-jHeqzDYM0NJx_c9-A4bWGWjr-VskykAtIJWNJoLs/s411/logo%20umrohquu.png" alt="Logo Brand">
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-uppercase small ls-1">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="service.html">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="galeri.html">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">News</a></li>
+                </ul>
+                <a href="https://wa.me/62895639068080" target="_blank" class="btn btn-gold ms-lg-3 shadow">Undang Kami</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <p class="text-gold text-uppercase fw-bold ls-2 mb-2">Our Activities</p>
+            <h1 class="display-4 fw-bold text-white mb-0">Galeri Kegiatan & Event</h1>
+        </div>
+    </header>
+
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&w=1600&q=80" 
+                 alt="Gallery Banner" class="featured-banner-img">
+        </div>
+    </section>
+
+    <section class="section-tight pt-0">
+        <div class="container">
+            
+            <div class="tabs-container">
+                <div class="tabs-wrapper">
+                    <button class="filter-btn active" onclick="filterGallery('all', this)">Semua Foto</button>
+                    <button class="filter-btn" onclick="filterGallery('training', this)">Corporate Training</button>
+                    <button class="filter-btn" onclick="filterGallery('seminar', this)">Public Seminar</button>
+                    <button class="filter-btn" onclick="filterGallery('gathering', this)">Gathering</button>
+                </div>
+            </div>
+
+            <div class="row g-3 g-lg-4" id="galleryGrid">
+                
+                <div class="col-lg-3 col-md-4 col-6 gallery-col" data-cat="training">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=600&q=80" class="gallery-thumb" alt="Workshop Leadership">
+                        <i class="bi bi-zoom-in zoom-icon"></i>
+                        <div class="gallery-caption">
+                            <p class="caption-sub">Training</p>
+                            <p class="caption-text">Workshop Leadership</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 gallery-col" data-cat="seminar">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=80" class="gallery-thumb" alt="Mega Seminar Jakarta">
+                        <i class="bi bi-zoom-in zoom-icon"></i>
+                        <div class="gallery-caption">
+                            <p class="caption-sub">Seminar</p>
+                            <p class="caption-text">Mega Seminar JKT</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 gallery-col" data-cat="gathering">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80" class="gallery-thumb" alt="Annual Gathering">
+                        <i class="bi bi-zoom-in zoom-icon"></i>
+                        <div class="gallery-caption">
+                            <p class="caption-sub">Gathering</p>
+                            <p class="caption-text">Annual Gathering</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 gallery-col" data-cat="training">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" class="gallery-thumb" alt="Sales Bootcamp">
+                        <i class="bi bi-zoom-in zoom-icon"></i>
+                        <div class="gallery-caption">
+                            <p class="caption-sub">Training</p>
+                            <p class="caption-text">Sales Bootcamp</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 gallery-col" data-cat="seminar">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&w=600&q=80" class="gallery-thumb" alt="Keynote Speech">
+                        <i class="bi bi-zoom-in zoom-icon"></i>
+                        <div class="gallery-caption">
+                            <p class="caption-sub">Seminar</p>
+                            <p class="caption-text">Keynote Speech BUMN</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 gallery-col" data-cat="training">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80" class="gallery-thumb" alt="Team Building">
+                        <i class="bi bi-zoom-in zoom-icon"></i>
+                        <div class="gallery-caption">
+                            <p class="caption-sub">Training</p>
+                            <p class="caption-text">Team Building Act</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 gallery-col" data-cat="gathering">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=600&q=80" class="gallery-thumb" alt="Award Night">
+                        <i class="bi bi-zoom-in zoom-icon"></i>
+                        <div class="gallery-caption">
+                            <p class="caption-sub">Gathering</p>
+                            <p class="caption-text">Award Night</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 gallery-col" data-cat="training">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=600&q=80" class="gallery-thumb" alt="Executive Meeting">
+                        <i class="bi bi-zoom-in zoom-icon"></i>
+                        <div class="gallery-caption">
+                            <p class="caption-sub">Training</p>
+                            <p class="caption-text">Executive Meeting</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-6 gallery-col" data-cat="seminar">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1591115765373-5207764f72e7?auto=format&fit=crop&w=600&q=80" class="gallery-thumb" alt="University Speech">
+                        <i class="bi bi-zoom-in zoom-icon"></i>
+                        <div class="gallery-caption">
+                            <p class="caption-sub">Seminar</p>
+                            <p class="caption-text">University Tour</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 gallery-col" data-cat="training">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" class="gallery-thumb" alt="Coaching Session">
+                        <i class="bi bi-zoom-in zoom-icon"></i>
+                        <div class="gallery-caption">
+                            <p class="caption-sub">Training</p>
+                            <p class="caption-text">Private Coaching</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 gallery-col" data-cat="gathering">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=600&q=80" class="gallery-thumb" alt="Company Anniversary">
+                        <i class="bi bi-zoom-in zoom-icon"></i>
+                        <div class="gallery-caption">
+                            <p class="caption-sub">Gathering</p>
+                            <p class="caption-text">Company Anniversary</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 gallery-col" data-cat="training">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600&q=80" class="gallery-thumb" alt="HR Workshop">
+                        <i class="bi bi-zoom-in zoom-icon"></i>
+                        <div class="gallery-caption">
+                            <p class="caption-sub">Training</p>
+                            <p class="caption-text">HR Strategy Workshop</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 gallery-col" data-cat="seminar">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1576267423048-15c0040fec78?auto=format&fit=crop&w=600&q=80" class="gallery-thumb" alt="Motivational Talk">
+                        <i class="bi bi-zoom-in zoom-icon"></i>
+                        <div class="gallery-caption">
+                            <p class="caption-sub">Seminar</p>
+                            <p class="caption-text">Motivational Talk</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 gallery-col" data-cat="training">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=600&q=80" class="gallery-thumb" alt="Focus Group">
+                        <i class="bi bi-zoom-in zoom-icon"></i>
+                        <div class="gallery-caption">
+                            <p class="caption-sub">Training</p>
+                            <p class="caption-text">Focus Group Discussion</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 gallery-col" data-cat="gathering">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=600&q=80" class="gallery-thumb" alt="Networking Night">
+                        <i class="bi bi-zoom-in zoom-icon"></i>
+                        <div class="gallery-caption">
+                            <p class="caption-sub">Gathering</p>
+                            <p class="caption-text">Networking Night</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 gallery-col" data-cat="seminar">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1561489401-fc2876ced162?auto=format&fit=crop&w=600&q=80" class="gallery-thumb" alt="Startup Summit">
+                        <i class="bi bi-zoom-in zoom-icon"></i>
+                        <div class="gallery-caption">
+                            <p class="caption-sub">Seminar</p>
+                            <p class="caption-text">Startup Summit</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+                    <img src="" id="modalImage" class="modal-img" alt="Preview">
+                    <div class="modal-caption">
+                        <h5 class="m-0 fw-bold" id="modalCaption"></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="contact" class="section-tight">
+        <div class="container">
+            <div class="contact-box">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 mb-4 mb-lg-0">
+                        <h2 class="text-white fw-bold mb-3">Siap Mengundang Kami?</h2>
+                        <p class="fs-5 mb-4 text-white">Hubungi kami sekarang untuk mendiskusikan kebutuhan training perusahaan Anda. Fast Response.</p>
+                        <ul class="list-unstyled text-white">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-gold me-2"></i> Konsultasi Gratis</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-gold me-2"></i> Proposal Penawaran</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5 text-center">
+                        <div class="qr-frame shadow-lg mb-3">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://wa.me/62895639068080" alt="QR WhatsApp" class="img-fluid">
+                        </div>
+                        <p class="text-white small mb-3">Scan untuk Chat WhatsApp</p>
+                        <a href="https://wa.me/6281234567890" class="btn btn-gold w-75 d-lg-none d-inline-block"><i class="bi bi-whatsapp me-2"></i> Chat WA Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container pb-5">
+            <div class="row gy-5">
+                <div class="col-lg-4 col-md-6">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvMns9Qk8dTqnpWpx0of4ukOeFKVI1m-SfD_pUbvdmdd_xBLHCTuvS_yyJHODVKoZaZgx_JWDRFOW3OY6NhI_EITfALURWn6hzSbKrG9HT3Pe2PmfHoodm5alIBolqhTneD5ixcOomGc9wkxtCmp-jHeqzDYM0NJx_c9-A4bWGWjr-VskykAtIJWNJoLs/s411/logo%20umrohquu.png" alt="Logo Footer" class="footer-logo">
+                    <p class="pe-lg-4 text-secondary">
+                        Partner terpercaya dalam pengembangan sumber daya manusia. Membantu individu dan organisasi mencapai potensi maksimal mereka.
+                    </p>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Menu Utama</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="about.html">Tentang Kami</a></li>
+                        <li><a href="service.html">Service</a></li>
+                        <li><a href="galeri.html">Galeri Kegiatan</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                        <li><a href="blog.html">News</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Jaringan Web</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="#">Official Academy</a></li>
+                        <li><a href="#">Merchandise Store</a></li>
+                        <li><a href="#">Podcast Series</a></li>
+                        <li><a href="#">Partner Program</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="footer-heading">Terhubung Dengan Kami</h5>
+                    <p class="text-secondary mb-4">Ikuti update terbaru dan konten inspiratif harian di media sosial kami.</p>
+                    <div>
+                        <a href="#" class="social-btn"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="social-btn"><i class="bi bi-linkedin fs-5"></i></a>
+                        <a href="#" class="social-btn"><i class="bi bi-youtube fs-5"></i></a>
+                        <a href="#" class="social-btn"><i class="bi bi-tiktok fs-5"></i></a>
+                    </div>
+                    <div class="mt-4 pt-3 border-top border-secondary border-opacity-25">
+                         <p class="small text-secondary m-0">Email: motivatornomer1@gmail.com</p>
+                         <p class="small text-secondary m-0">Telp: +62 895-6390-68080</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid py-3" style="background-color: #000;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start small text-secondary">
+                        &copy; 2025 #1 Motivator Indonesia. All Rights Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end small">
+                        <a href="#" class="text-secondary me-3">Privacy Policy</a>
+                        <a href="contact.html" class="text-secondary">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // 1. Filter Functionality
+        function filterGallery(category, btnElement) {
+            let buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            let items = document.querySelectorAll('.gallery-col');
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-cat') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // 2. Lightbox Modal Functionality
+        function openModal(element) {
+            let img = element.querySelector('img');
+            let captionMain = element.querySelector('.caption-text').innerText;
+            document.getElementById('modalImage').src = img.src;
+            document.getElementById('modalCaption').innerText = captionMain;
+            var myModal = new bootstrap.Modal(document.getElementById('galleryModal'));
+            myModal.show();
+        }
+    </script>
+</body>
+</html>

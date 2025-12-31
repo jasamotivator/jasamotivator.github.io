@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Leadership - Detail Layanan</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <style>
+        /* --- 1. GLOBAL VARIABLES --- */
+        :root {
+            --bg-dark: #0b0f19;       
+            --bg-card: #131929;       
+            --bg-footer: #05070a;     
+            --gold: #d4af37;          
+            --gold-hover: #f0c441;
+            --text-heading: #ffffff;  
+            --text-body: #e2e8f0; 
+            --border-line: rgba(255,255,255,0.1);
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-body);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4, h5, .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-heading);
+        }
+
+        p, li, span, div { color: var(--text-body); }
+        .text-gold { color: var(--gold) !important; }
+        .text-white { color: #fff !important; }
+        a { text-decoration: none; }
+
+        /* --- 2. NAVBAR --- */
+        .navbar {
+            padding: 1rem 0;
+            background: rgba(11, 15, 25, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-line);
+        }
+        .navbar-brand img { height: 40px; width: auto; }
+        .nav-link {
+            color: #d1d1d1 !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin: 0 0.8rem;
+            transition: color 0.3s;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--gold) !important; }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), #cba226);
+            color: #000 !important;
+            font-weight: 700;
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            background: var(--gold-hover);
+        }
+
+        /* --- 3. PAGE HEADER --- */
+        .page-header {
+            position: relative;
+            padding: 140px 0 80px; 
+            background: linear-gradient(90deg, #0b0f19 30%, rgba(11, 15, 25, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* --- 4. CONTENT STYLING --- */
+        .content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-line);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        /* [NEW] MAIN & SUPPORT IMAGES */
+        .main-service-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-line);
+        }
+        .support-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border-line);
+            transition: 0.3s;
+        }
+        .support-img:hover { transform: scale(1.02); border-color: var(--gold); }
+
+
+        .check-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            color: var(--text-body);
+        }
+        .check-list li::before {
+            content: "\F26A"; 
+            font-family: "bootstrap-icons";
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.1rem;
+        }
+
+        /* Accordion */
+        .accordion-item {
+            background-color: transparent;
+            border: 1px solid var(--border-line);
+            margin-bottom: 10px;
+            border-radius: 8px !important;
+            overflow: hidden;
+        }
+        .accordion-button {
+            background-color: rgba(255,255,255,0.03);
+            color: #fff;
+            font-weight: 600;
+            box-shadow: none !important;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            border-bottom: 1px solid var(--border-line);
+        }
+        .accordion-button::after { filter: invert(1); }
+        .accordion-button:not(.collapsed)::after {
+            filter: invert(0.8) sepia(1) saturate(5) hue-rotate(5deg); 
+        }
+        .accordion-body {
+            color: var(--text-body);
+            background-color: rgba(0,0,0,0.2);
+            font-size: 0.95rem;
+        }
+
+        /* Sidebar Sticky Widget */
+        .sidebar-widget {
+            position: sticky;
+            top: 100px; 
+            background: linear-gradient(135deg, #1a202e, #0f131f);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .meta-item:last-child { border-bottom: none; }
+        .meta-icon {
+            width: 40px; height: 40px;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin-right: 15px;
+        }
+
+        /* [NEW] QR Code in Sidebar */
+        .sidebar-qr {
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 20px auto 10px;
+            display: block;
+            width: fit-content;
+        }
+
+        /* --- 5. FOOTER --- */
+        footer { background: var(--bg-footer); border-top: 1px solid var(--border-line); padding-top: 4rem; }
+        .footer-logo { height: 40px; margin-bottom: 1.5rem; }
+        .footer-heading { color: var(--text-heading); font-weight: 700; margin-bottom: 1.5rem; }
+        .footer-links a { color: #a0a0a0; transition: 0.3s; display:block; margin-bottom: 0.5rem; }
+        .footer-links a:hover { color: var(--gold); padding-left: 5px; }
+        .social-btn {
+            width: 40px; height: 40px; background: rgba(255,255,255,0.08);
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 50%; margin-right: 8px; transition: 0.3s; color: #fff;
+        }
+        .social-btn:hover { background: var(--gold); color: #000 !important; }
+
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 991px) {
+            .page-header { padding: 110px 0 40px; }
+            .section-tight { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+            .sidebar-widget { position: static; margin-top: 2rem; }
+            .display-4 { font-size: 2.2rem; }
+            
+            /* Adjust Image Heights for Mobile */
+            .main-service-img { height: 250px; }
+            .support-img { height: 150px; margin-bottom: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvMns9Qk8dTqnpWpx0of4ukOeFKVI1m-SfD_pUbvdmdd_xBLHCTuvS_yyJHODVKoZaZgx_JWDRFOW3OY6NhI_EITfALURWn6hzSbKrG9HT3Pe2PmfHoodm5alIBolqhTneD5ixcOomGc9wkxtCmp-jHeqzDYM0NJx_c9-A4bWGWjr-VskykAtIJWNJoLs/s411/logo%20umrohquu.png" alt="Logo Brand">
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-uppercase small ls-1">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="service.html">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="galeri.html">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">News</a></li>
+                </ul>
+                <a href="https://wa.me/62895639068080" target="_blank" class="btn btn-gold ms-lg-3 shadow">Undang Kami</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <a href="services.html" class="text-gold text-decoration-none fw-bold small mb-2 d-inline-block"><i class="bi bi-arrow-left me-1"></i> Kembali ke Layanan</a>
+                    <h1 class="display-4 fw-bold text-white mb-3">Strategic Leadership in Digital Era</h1>
+                    <p class="fs-5 text-white opacity-75">Transformasi Manajer Menjadi Pemimpin Visioner yang Adaptif.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="section-tight py-5">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-8">
+                    
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80" 
+                         alt="Strategic Leadership Workshop" class="main-service-img">
+
+                    <div class="content-card">
+                        <h3 class="text-white fw-bold mb-4">Deskripsi Program</h3>
+                        <p>
+                            Dalam era disrupsi digital saat ini, gaya kepemimpinan tradisional tidak lagi relevan. Perusahaan membutuhkan pemimpin yang tidak hanya mampu memberikan perintah, tetapi juga mampu menginspirasi, beradaptasi dengan cepat, dan menavigasi tim melalui ketidakpastian.
+                        </p>
+                        <p class="mb-5">
+                            Program <strong>Strategic Leadership</strong> ini dirancang khusus untuk level Manajer hingga C-Level Executive. Melalui workshop intensif selama 2 hari, peserta akan dibekali dengan pola pikir strategis (Strategic Mindset).
+                        </p>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=600&q=80" 
+                                     alt="Activity 1" class="support-img">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=600&q=80" 
+                                     alt="Activity 2" class="support-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <h3 class="text-white fw-bold mb-4">Tujuan Pembelajaran</h3>
+                        <ul class="list-unstyled check-list">
+                            <li>Memahami pergeseran paradigma kepemimpinan di era VUCA (Volatility, Uncertainty, Complexity, Ambiguity).</li>
+                            <li>Mengembangkan kemampuan berpikir strategis (Helicopter View) dalam pengambilan keputusan bisnis.</li>
+                            <li>Meningkatkan kecerdasan emosional (EQ) untuk membangun kepercayaan tim.</li>
+                            <li>Teknik <strong>Coaching & Mentoring</strong> yang efektif untuk meningkatkan produktivitas bawahan.</li>
+                            <li>Membangun budaya inovasi yang berkelanjutan di dalam departemen.</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-5">
+                        <h3 class="text-white fw-bold mb-4">Kurikulum & Silabus</h3>
+                        <div class="accordion" id="accordionSyllabus">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#mod1" aria-expanded="true">
+                                        Modul 1: The New Psychology of Leadership
+                                    </button>
+                                </h2>
+                                <div id="mod1" class="accordion-collapse collapse show" data-bs-parent="#accordionSyllabus">
+                                    <div class="accordion-body">
+                                        Membongkar mitos kepemimpinan lama dan membangun pondasi mentalitas "Growth Mindset". Peserta akan melakukan asesmen gaya kepemimpinan pribadi.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mod2">
+                                        Modul 2: Strategic Thinking & Decision Making
+                                    </button>
+                                </h2>
+                                <div id="mod2" class="accordion-collapse collapse" data-bs-parent="#accordionSyllabus">
+                                    <div class="accordion-body">
+                                        Studi kasus tentang pengambilan keputusan di situasi krisis. Menggunakan Framework SWOT dan Design Thinking.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mod3">
+                                        Modul 3: High Impact Communication
+                                    </button>
+                                </h2>
+                                <div id="mod3" class="accordion-collapse collapse" data-bs-parent="#accordionSyllabus">
+                                    <div class="accordion-body">
+                                        Seni memberikan feedback yang konstruktif tanpa menyakiti. Teknik persuasi dan negosiasi untuk level manajerial.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-card bg-darker">
+                        <div class="row">
+                            <div class="col-md-6 mb-4 mb-md-0">
+                                <h5 class="text-gold fw-bold mb-3"><i class="bi bi-people me-2"></i> Target Peserta</h5>
+                                <ul class="list-unstyled text-body small">
+                                    <li>• CEO / Direktur</li>
+                                    <li>• General Manager</li>
+                                    <li>• Team Leader</li>
+                                    <li>• Future Leaders (Talent Pool)</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="text-gold fw-bold mb-3"><i class="bi bi-gear-wide-connected me-2"></i> Metode</h5>
+                                <ul class="list-unstyled text-body small">
+                                    <li>• 30% Teori & Konsep</li>
+                                    <li>• 40% Roleplay & Simulasi</li>
+                                    <li>• 30% Group Coaching & Q&A</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="sidebar-widget">
+                        <h4 class="text-white fw-bold mb-4">Detail Program</h4>
+                        
+                        <div class="meta-item">
+                            <div class="meta-icon"><i class="bi bi-clock"></i></div>
+                            <div>
+                                <small class="text-muted d-block">Durasi</small>
+                                <span class="text-white fw-bold">2 Hari (Full Day)</span>
+                            </div>
+                        </div>
+
+                        <div class="meta-item">
+                            <div class="meta-icon"><i class="bi bi-person-video3"></i></div>
+                            <div>
+                                <small class="text-muted d-block">Format</small>
+                                <span class="text-white fw-bold">Offline / Online / Hybrid</span>
+                            </div>
+                        </div>
+
+                        <div class="meta-item">
+                            <div class="meta-icon"><i class="bi bi-translate"></i></div>
+                            <div>
+                                <small class="text-muted d-block">Bahasa</small>
+                                <span class="text-white fw-bold">Indonesia / English</span>
+                            </div>
+                        </div>
+
+                        <hr class="border-secondary border-opacity-25 my-4">
+
+                        <a href="contact.html" class="btn btn-gold w-100 py-3 mb-3 fw-bold shadow">
+                            Booking Program Ini
+                        </a>
+                        
+                        <button class="btn btn-outline-light w-100 py-3 mb-4">
+                            <i class="bi bi-file-earmark-pdf me-2"></i> Download Silabus PDF
+                        </button>
+                        
+                        <div class="text-center border-top border-secondary border-opacity-25 pt-4">
+                            <p class="small text-white mb-2">Scan untuk Chat Admin</p>
+                            <div class="sidebar-qr shadow-lg">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://wa.me/62895639068080" 
+                                     alt="QR Code WhatsApp" class="img-fluid">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container pb-5">
+            <div class="row gy-5">
+                <div class="col-lg-4 col-md-6">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvMns9Qk8dTqnpWpx0of4ukOeFKVI1m-SfD_pUbvdmdd_xBLHCTuvS_yyJHODVKoZaZgx_JWDRFOW3OY6NhI_EITfALURWn6hzSbKrG9HT3Pe2PmfHoodm5alIBolqhTneD5ixcOomGc9wkxtCmp-jHeqzDYM0NJx_c9-A4bWGWjr-VskykAtIJWNJoLs/s411/logo%20umrohquu.png" alt="Logo Footer" class="footer-logo">
+                    <p class="pe-lg-4 text-secondary">
+                        Partner terpercaya dalam pengembangan sumber daya manusia. Membantu individu dan organisasi mencapai potensi maksimal mereka.
+                    </p>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Menu Utama</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="about.html">Tentang Kami</a></li>
+                        <li><a href="service.html">Service</a></li>
+                        <li><a href="galeri.html">Galeri Kegiatan</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                        <li><a href="blog.html">News</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Jaringan Web</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="#">Official Academy</a></li>
+                        <li><a href="#">Merchandise Store</a></li>
+                        <li><a href="#">Podcast Series</a></li>
+                        <li><a href="#">Partner Program</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="footer-heading">Terhubung Dengan Kami</h5>
+                    <p class="text-secondary mb-4">Ikuti update terbaru dan konten inspiratif harian di media sosial kami.</p>
+                    <div>
+                        <a href="#" class="social-btn"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="social-btn"><i class="bi bi-linkedin fs-5"></i></a>
+                        <a href="#" class="social-btn"><i class="bi bi-youtube fs-5"></i></a>
+                        <a href="#" class="social-btn"><i class="bi bi-tiktok fs-5"></i></a>
+                    </div>
+                    <div class="mt-4 pt-3 border-top border-secondary border-opacity-25">
+                         <p class="small text-secondary m-0">Email: motivatornomer1@gmail.com</p>
+                         <p class="small text-secondary m-0">Telp: +62 895-6390-68080</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid py-3" style="background-color: #000;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start small text-secondary">
+                        &copy; 2025 #1 Motivator Indonesia. All Rights Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end small">
+                        <a href="#" class="text-secondary me-3">Privacy Policy</a>
+                        <a href="contact.html" class="text-secondary">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
